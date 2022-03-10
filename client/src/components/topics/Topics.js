@@ -8,11 +8,11 @@ import { useLocation, useParams } from 'react-router-dom';
 const Topics = ({}) => {
   const [topics, setTopics] = useState([])
   // if you want to grab the id from the link state then:
-  const location = useLocation()
-  // const { subId } = location.state
+  const location = useLocation();
+  const { subId, subTitle } = location.state
 
   // is you want to grab the id from the url then
-  const { subId } = useParams()
+  // const { subId,  } = useParams()
 
   useEffect( () => {
     axios.get(`/api/subs/${subId}/topics`)
@@ -33,6 +33,7 @@ const Topics = ({}) => {
 
   return (
     <>
+      <h1>Sub: {subTitle}</h1>
       <h3>Topics</h3>
       <TopicForm addTopic={addTopic} />
       <TopicList
